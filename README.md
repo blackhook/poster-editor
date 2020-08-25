@@ -1,4 +1,4 @@
-# photo_edit
+# poster-editor
 
 批量生成邀请函
 海报

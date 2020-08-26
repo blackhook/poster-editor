@@ -73,6 +73,9 @@ if checks_names == 'Y' or checks_names == 'y':
         print('已经生成 ' + str(numCount) + " 共计", len(names), "还有", str(len(names) - numCount) + " 个要努力干啊")
     end_time = datetime.datetime.now()
     print('亲爱的，搞定啦~，你花了' + str((end_time - start_time))[:-7] + "在" + out_path + "下生成" + str(len(names)) + "张图哦~")
+    for i in range(3, -1, -1):
+        print('\r', '干完了，回去睡觉了，可以关掉我了，bye，倒数 %s 秒！' % str(i).zfill(2), end='')
+        time.sleep(1)
 
 else:
     print("宝贝，再确认一遍吧~excel记得要保存哦。")

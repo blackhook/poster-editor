@@ -53,6 +53,7 @@ if checks_names == 'Y' or checks_names == 'y':
         backup_path = "backup_" + str(time.mktime(datetime.datetime.now().timetuple()))[:-2]
         shutil.move(out_path, backup_path)
         print("给你保存了一份到" + os.getcwd().replace("\\", "/") + "/" + backup_path + "没用了记得删除哦~~")
+        os.mkdir(out_path)
     else:
         os.mkdir(out_path)
     for i in range(3, -1, -1):

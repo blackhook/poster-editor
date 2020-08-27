@@ -12,4 +12,4 @@
 2020.08.26 增加一个pre_view，查看一下配置是否正确
 
 着急用直接下载这个就行
-https://github.com/p369c258/poster-editor/blob/master/dist.zip
+https://raw.githubusercontent.com/p369c258/poster-editor/master/dist.zip

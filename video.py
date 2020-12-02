@@ -1,9 +1,10 @@
 # coding=utf-8
+import configparser
+
+import chardet
 import cv2
 import numpy
-import configparser
 import xlrd
-import chardet
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
@@ -27,6 +28,8 @@ header_y = iniconfig.get("image", "header_y")
 video_path = iniconfig.get("source", "video_path")
 out_path = iniconfig.get("image", "out_path")
 color = iniconfig.get("image", "color")
+
+
 def cv2ImgAddText(img, na_tmp):
     img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
     draw = ImageDraw.Draw(img)
@@ -36,6 +39,7 @@ def cv2ImgAddText(img, na_tmp):
     draw.text(text_coordinate, na_tmp, font=font, fill=color)
     return cv2.cvtColor(numpy.asarray(img), cv2.COLOR_RGB2BGR)
 
+
 for na_tmp in names:
     print(na_tmp)
     cap = cv2.VideoCapture(video_path)
@@ -43,19 +47,16 @@ for na_tmp in names:
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    videoWriter = cv2.VideoWriter(out_path+na_tmp+'.mp4', fourcc, fps_video, (frame_width, frame_height))
+    videoWriter = cv2.VideoWriter(out_path + na_tmp + '.mp4', fourcc, fps_video, (frame_width, frame_height))
     success = True
     while success:
         success, frame = cap.read()
         if not success:
             break
         frame = cv2ImgAddText(frame, na_tmp)
-        #cv2.imshow("Image", frame)
+        # cv2.imshow("Image", frame)
         videoWriter.write(frame)
-        if cv2.waitKey(1) == ord('q'):
-            break
+    #  if cv2.waitKey(1) == ord('q'):
+    #     break
     cap.release()
-#cv2.destroyAllWindows()
-
-
-
+# cv2.destroyAllWindows()
